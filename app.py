@@ -30,6 +30,12 @@ def input():
         length = int(request.args.get('length'))
         passwds = generate_passwords(q, length)
         return render_template('success.html', liste=passwds)
+
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')
         
 
 
