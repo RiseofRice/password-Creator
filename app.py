@@ -31,7 +31,7 @@ def input():
         passwds = generate_passwords(q, length)
         return render_template('success.html', liste=passwds)
 
-@app.route('/checkmy/<password>')
+@app.route('/checkmypw/<password>')
 def shouldnotbeused(password):
     if sha1.check(password) == True:
         return "<h1> you got compromised</h1>"
