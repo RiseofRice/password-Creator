@@ -1,7 +1,7 @@
 from flask import render_template, Flask, jsonify, redirect, request
 import string
 from genpasswds import generate_passwords
-
+import sha1
 
 app = Flask(__name__)
 
@@ -31,11 +31,17 @@ def input():
         passwds = generate_passwords(q, length)
         return render_template('success.html', liste=passwds)
 
+@app.route('/checkmy/<password>')
+def shouldnotbeused(password):
+    if sha1.check(password) == True:
+        return "<h1> you got compromised</h1>"
+    else:
+        return "<h1>you're safe</h1>"
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0', port=8080)
         
 
 
