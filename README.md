@@ -22,20 +22,26 @@ you can use the dockerfile too:
 
 After that:
 
- - `docker run --name Flask-App -d -p 8000:5000 FlaskPasswords`
+ - `docker run --name Flask-App -d -p 5000:8080 FlaskPasswords`
+
+Or use docker-compose:
+
+ - `docker-compose up -d --build`
+
+Maybe the rendered html needs to be adapted to your port configuration especially the redirect action in the form 
 ____
 Usage
 -
-after the installation it's availeble on `0.0.0.0:8000` on Docker</br>
-and '0.0.0.0:5000' on native Python 
+after the installation it's available on `0.0.0.0:5000 which means 127.0.0.1:5000` on Docker</br>
+and `0.0.0.0:8080` on native Python 
 ___
 
-Website are just 2 Input Boxes. </br>
+On the website are just 2 Input Boxes. </br>
 
- - The First one are the quantity of Passwords
- - The Second one are the length of the Passwords
+ - The First one are the quantity of Passwords you want to generate
+ - The Second one are the length of your generated Passwords
 
- Note: the complexity is a standard an not adjustable
+ Note: <b>The complexity is a standard and isn't adjustable</b>
 ___
 You can also send a GET Request to the Webapp
 

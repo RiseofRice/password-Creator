@@ -5,3 +5,5 @@
 #python chache
 __pycache__
 *.pyc
+
+apikey.json
