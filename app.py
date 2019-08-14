@@ -2,6 +2,7 @@ from flask import render_template, Flask, jsonify, redirect, request
 import string
 from genpasswds import generate_passwords
 import sha1
+from genlist import gen_list
 
 app = Flask(__name__)
 
@@ -14,21 +15,21 @@ def helloworld():
 # app.config["Ser"]
 
 @app.route('/new', methods=["GET", "POST"])
-def input():
+def new():
 
     if request.method == "POST":
         q = int(request.form['q'])
         length = int(request.form['length'])
-        passwds = generate_passwords(q, length)
+        passwds = gen_list(q, length)
         return render_template('success.html', liste=passwds)
-               
+            
         
         
     else:
         
         q = int(request.args.get('q'))
         length = int(request.args.get('length'))
-        passwds = generate_passwords(q, length)
+        passwds = gen_list(q, length)
         return render_template('success.html', liste=passwds)
 
 @app.route('/checkmypw/<password>')
@@ -37,6 +38,8 @@ def shouldnotbeused(password):
         return "<h1> you got compromised</h1>"
     else:
         return "<h1>you're safe</h1>"
+
+
 
 
 
