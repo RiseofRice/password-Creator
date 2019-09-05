@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route("/")
 def helloworld():
     return render_template("index.html")
-# app.config["Ser"]
+
 
 @app.route('/new', methods=["GET", "POST"])
 def new():
