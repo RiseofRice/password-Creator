@@ -47,5 +47,9 @@ You can also send a GET Request to the Webapp
 
 for example `0.0.0.0:8000/new?q=8&length=25` </br>
 ___
+Acknowledgement's
+-
+Special Thanks to [NIST](nist.badpasswordcheck.com) for making availeble the bad password api that i use in this program
+___
 License  [![](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) :scroll:
 -

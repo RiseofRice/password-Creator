@@ -8,6 +8,17 @@ def cipher(pw):
     ha = hashlib.sha1(pw.encode()).hexdigest()
     return ha
 
+def cipherAList(l):
+    hashlist = []
+    for password in l:
+        hashlist.append(hashlib.sha1(password.encode()).hexdigest())
+    return hashlist
+
+def checklist(li):
+    li = cipherAList(li)
+    for hash in li:
+        check(hash)
+
 # reports if the password is compromised 
 def check(pw):
     hashed = cipher(pw)
