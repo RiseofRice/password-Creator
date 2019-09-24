@@ -27,7 +27,7 @@ def new():
 @app.route('/checkmy/<password>', methods=["POST", "GET"])
 def shouldnotbeused(password):
     if sha1.check(password) == True:
-        return "<h1> you got compromised</h1>"
+        return render_template("compromised.html", data=f"'{password}'")
     else:
         return "<h1>you're safe</h1>"
 
