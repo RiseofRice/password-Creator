@@ -1,5 +1,5 @@
-passgen:
-    container_name: password-generator
+passwordgenereator:
+    container_name: passwordgen
     build: .
     restart: always
     ports:

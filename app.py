@@ -24,8 +24,29 @@ def new():
         passwds = gen_list(q, length)
         return render_template('success.html', liste=passwds)
 
-@app.route('/checkmypw/<password>')
+@app.route('/checkmy/<password>', methods=["POST", "GET"])
 def shouldnotbeused(password):
+    if sha1.check(password) == True:
+        return "<h1> you got compromised</h1>"
+    else:
+        return "<h1>you're safe</h1>"
+
+@app.route('/api/check', methods=["POST", "GET"])
+def apicheck():
+    if request.method == "POST":
+        
+        dictionary = request.args.to_dict()
+        keys = []
+        for key in dictionary:
+            keys.append(key)
+        print(keys)
+        if keys[0] == "password":
+            if sha1.check(dictionary["password"]) == True:
+                return f"{dictionary['password']} is compromied"
+            else:
+                return "youre safe"
+        # else:
+        #     return "something went wrong"
     if sha1.check(password) == True:
         return "<h1> you got compromised</h1>"
     else:
