@@ -9,6 +9,6 @@ def generate_passwords(length):
     
     password = "".join(random.choice(passstring) for j in range(length))
 
-    print(password)
+    # print(password)
 
     return password

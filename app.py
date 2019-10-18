@@ -3,6 +3,7 @@ import string
 from genpasswds import generate_passwords
 import sha1
 from genlist import gen_list
+import os 
 
 app = Flask(__name__)
 
@@ -44,13 +45,13 @@ def apicheck():
             if sha1.check(dictionary["password"]) == True:
                 return f"{dictionary['password']} is compromied"
             else:
-                return "youre safe"
+                return "youre safe"#
         # else:
         #     return "something went wrong"
-    if sha1.check(password) == True:
-        return "<h1> you got compromised</h1>"
-    else:
-        return "<h1>you're safe</h1>"
+    # if sha1.check(password) == True:
+    #     return "<h1> you got compromised</h1>"
+    # else:
+    #     return "<h1>you're safe</h1>"
 
 
 if __name__ == "__main__":

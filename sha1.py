@@ -2,6 +2,7 @@ import hashlib
 from sys import argv
 import req
 import json
+import verifyenv
 
 # ciphers the cleartext password to sha1 for the api
 def cipher(pw):
@@ -22,7 +23,8 @@ def checklist(li):
 # reports if the password is compromised 
 def check(pw):
     hashed = cipher(pw)
-    response = req.get_vulnurability(hashed)
+    api_key = verifyenv.verify()
+    response = req.get_vulnurability(hashed, api_key)
     obje = json.loads(response)
     print(obje)
     if obje["found"] == True:
