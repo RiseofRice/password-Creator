@@ -3,13 +3,15 @@ import string
 from genpasswds import generate_passwords
 import sha1
 from genlist import gen_list
-import os 
+import os
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def helloworld():
     return render_template("index.html")
+
 
 @app.route('/new', methods=["GET", "POST"])
 def new():
@@ -25,6 +27,16 @@ def new():
         passwds = gen_list(q, length)
         return render_template('success.html', liste=passwds)
 
+
+@app.route("/1pass", methods=["POST", "GET"])
+def onePass():
+    if request.method != "POST":
+        return render_template('404.html')
+    else:
+        password = generate_passwords(length=25)
+        return password
+
+
 @app.route('/checkmy/<password>', methods=["POST", "GET"])
 def shouldnotbeused(password):
     if sha1.check(password) == True:
@@ -32,10 +44,11 @@ def shouldnotbeused(password):
     else:
         return "<h1>you're safe</h1>"
 
+
 @app.route('/api/check', methods=["POST", "GET"])
 def apicheck():
     if request.method == "POST":
-        
+
         dictionary = request.args.to_dict()
         keys = []
         for key in dictionary:
@@ -45,7 +58,7 @@ def apicheck():
             if sha1.check(dictionary["password"]) == True:
                 return f"{dictionary['password']} is compromied"
             else:
-                return "youre safe"#
+                return "youre safe"
         # else:
         #     return "something went wrong"
     # if sha1.check(password) == True:
@@ -56,13 +69,3 @@ def apicheck():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
-        
-
-
-
-        
-    
-
-
-
-
