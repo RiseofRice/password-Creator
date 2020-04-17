@@ -4,9 +4,13 @@ from genpasswds import generate_passwords
 import sha1
 from genlist import gen_list
 import os
+import requests
+from flask_cors import CORS
+
+
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route("/")
 def helloworld():
