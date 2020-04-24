@@ -8,9 +8,9 @@ import requests
 from flask_cors import CORS
 
 
-
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route("/")
 def helloworld():
@@ -39,6 +39,19 @@ def onePass():
     else:
         password = generate_passwords(length=25)
         return password
+
+
+@app.route("/registerkey", methods=["GET", "POST"])
+def registerkey():
+    return render_template("")
+
+
+@app.route("/registered", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        pass
+    else:
+        pass
 
 
 @app.route('/checkmy/<password>', methods=["POST", "GET"])
