@@ -6,11 +6,11 @@ from genlist import gen_list
 import os
 import requests
 from flask_cors import CORS
-
-
+import json
 
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route("/")
 def helloworld():
@@ -39,6 +39,24 @@ def onePass():
     else:
         password = generate_passwords(length=25)
         return password
+
+# TODO Register key funtion schreiben
+@app.route("/registerkey")
+def registerkey():
+    return render_template("register_key.html")
+
+
+@app.route("/registered", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        q = request.args.get('key')
+        print(q)
+        element = {"api_key": q}
+        with open("apikey.json", "w") as jsonfile:
+            json.dump(element, jsonfile)
+        return "<h1> Saved </h1>"
+    else:
+        return render_template("404.html")
 
 
 @app.route('/checkmy/<password>', methods=["POST", "GET"])
@@ -72,4 +90,4 @@ def apicheck():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='localhost', port=8080, debug=True)
