@@ -51,7 +51,7 @@ def register():
     if request.method == "GET":
         q = request.args.get('key')
         print(q)
-        element = {"api_key": q}
+        element = {"API_KEY": q}
         with open("apikey.json", "w") as jsonfile:
             json.dump(element, jsonfile)
         return "<h1> Saved </h1>"
