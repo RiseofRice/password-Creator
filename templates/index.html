@@ -1,54 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon">
-        <link rel="stylesheet" href="../static/css/index.css" type="text/css">
-        <link rel="stylesheet" href="../static/css/formstyle.css" type="text/css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <title>FLask-Password-App</title>
-        
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="shortcut icon"
+      href="../static/img/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../static/css/index.css" type="text/css" />
+    <link rel="stylesheet" href="../static/css/formstyle.css" type="text/css" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>FLask-Password-App</title>
+  </head>
+  <body>
+    <div class="sidenav">
+      <div class="login-main-text">
+        <h2>
+          Password Creator<br />
+          Create Page
+        </h2>
+        <p>
+          Enter how many passwords you want and how long you want them to be.
+        </p>
+        <br />
+        <br />
+        <br />
+        <h3>Example:</h3>
+        <p>
+          set of passwords: 8 this prints 8 passwords to your screen <br />
+          length of the passwords for example 25
+        </p>
+        <br />
+        <br />
+        <br />
+        <p>
+          type /checkmy/"Password" at the end of the url for example:
+          "85.214.212.31:8080/checkmy/12345678Ab!"
+        </p>
+      </div>
+    </div>
 
-        <div class="sidenav">
-            <div class="login-main-text">
-                <h2>Password Creator<br> Create Page</h2>
-                <p>Enter how many passwords you want and how long you want them to be.</p>
-                <br> <br> <br>
-                <h3>Example:</h3>
-                <p>set of passwords: 8 this prints 8 passwords to your screen <br>
-                length of the passwords for example 25 </p>
-                <br> <br> <br>
-                <p> type /checkmy/"Password" at the end of the url for example: "85.214.212.31:8080/checkmy/12345678Ab!"</p>
+    <div class="main">
+      <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+          <form action="http://riseofrice.de:8080/new" method="POST">
+            <div class="form-group">
+              <label>set of passwords</label>
+              <input
+                type="text"
+                class="form-control"
+                name="q"
+                placeholder="Quantity as number"
+              />
             </div>
-         </div>
-
-         <div class="main">
-            
-            <div class="col-md-6 col-sm-12">
-               
-                <div class="login-form">
-                  
-                <form action="http://85.214.212.31:8080/new" method="POST">
-                    <div class="form-group">
-                        <label>set of passwords</label>
-                        <input type="text" class="form-control" name="q" placeholder="Quantity as number">
-                     </div>
-                     <div class="form-group">
-                        <label>length of passwords</label>
-                        <input type="text" name="length" class="form-control" placeholder="length as number">
-                    </div>
-                    <input type="submit" class="btn btn-black" value="submit">
-                     
-                </form>
-               </div>
+            <div class="form-group">
+              <label>length of passwords</label>
+              <input
+                type="text"
+                name="length"
+                class="form-control"
+                placeholder="length as number"
+              />
             </div>
-         </div>
-    
-    </body>
+            <input type="submit" class="btn btn-black" value="submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
