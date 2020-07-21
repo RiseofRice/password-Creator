@@ -35,12 +35,15 @@ def new():
 @app.route("/1pass", methods=["POST", "GET"])
 def onePass():
     if request.method != "POST":
-        return render_template('404.html')
+        password = generate_passwords(length=25)
+        return password
     else:
         password = generate_passwords(length=25)
         return password
 
 # TODO Register key funtion schreiben
+
+
 @app.route("/registerkey")
 def registerkey():
     return render_template("register_key.html")

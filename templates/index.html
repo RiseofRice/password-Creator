@@ -48,26 +48,31 @@
       </div>
     </div>
 
-    <div class="main">
+    <div id="app" class="main">
       <div class="col-md-6 col-sm-12">
         <div class="login-form">
           <form action="http://riseofrice.de:8080/new" method="POST">
             <div class="form-group">
-              <label>set of passwords</label>
+              <label
+                >How many Passwords you like? {{ quants }}
+                <span v-show="showi">?</span></label
+              >
               <input
+                v-model="message"
                 type="text"
                 class="form-control"
                 name="q"
                 placeholder="Quantity as number"
               />
             </div>
-            <div class="form-group">
-              <label>length of passwords</label>
+            <div class="form-group" v-show="showi">
+              <label>{{ lengths }}</label>
               <input
                 type="text"
                 name="length"
                 class="form-control"
-                placeholder="length as number"
+                placeholder="length as a number"
+                v-model="len"
               />
             </div>
             <input type="submit" class="btn btn-black" value="submit" />
@@ -75,5 +80,7 @@
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
