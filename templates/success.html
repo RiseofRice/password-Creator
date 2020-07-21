@@ -2,7 +2,9 @@
 <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon">
 
 <ul>
-{% for password in liste%}
-    <li><p enc>{{password}}</p></li>
-{%endfor%}
+    {% for password in liste%}
+    <li>
+        <p enc>[[password]]</p>
+    </li>
+    {%endfor%}
 </ul>

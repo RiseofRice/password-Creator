@@ -8,16 +8,17 @@ import requests
 from flask_cors import CORS
 import json
 
+
 app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/")
+@ app.route("/")
 def helloworld():
     return render_template("index.html")
 
 
-@app.route('/new', methods=["GET", "POST"])
+@ app.route('/new', methods=["GET", "POST"])
 def new():
 
     if request.method == "POST":
@@ -32,7 +33,7 @@ def new():
         return render_template('success.html', liste=passwds)
 
 
-@app.route("/1pass", methods=["POST", "GET"])
+@ app.route("/1pass", methods=["POST", "GET"])
 def onePass():
     if request.method != "POST":
         password = generate_passwords(length=25)
@@ -44,12 +45,12 @@ def onePass():
 # TODO Register key funtion schreiben
 
 
-@app.route("/registerkey")
+@ app.route("/registerkey")
 def registerkey():
     return render_template("register_key.html")
 
 
-@app.route("/registered", methods=["GET", "POST"])
+@ app.route("/registered", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
         q = request.args.get('key')
@@ -62,7 +63,7 @@ def register():
         return render_template("404.html")
 
 
-@app.route('/checkmy/<password>', methods=["POST", "GET"])
+@ app.route('/checkmy/<password>', methods=["POST", "GET"])
 def shouldnotbeused(password):
     if sha1.check(password) == True:
         return render_template("compromised.html", data=f"'{password}'")
@@ -70,7 +71,7 @@ def shouldnotbeused(password):
         return "<h1>you're safe</h1>"
 
 
-@app.route('/api/check', methods=["POST", "GET"])
+@ app.route('/api/check', methods=["POST", "GET"])
 def apicheck():
     if request.method == "POST":
 
@@ -93,4 +94,5 @@ def apicheck():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    # TODO Change before push
+    app.run(host='0.0.0.0', port=8080, debug=True)

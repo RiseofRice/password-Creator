@@ -1,8 +1,11 @@
+Vue.config.delimiters = ["[[", "]]"];
 new Vue({
+
     el: "#app",
+
     data: {
         message: '',
-        len: ''
+
     },
     computed: {
         quants() {

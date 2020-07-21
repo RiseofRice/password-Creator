@@ -1,86 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="shortcut icon"
-      href="../static/img/favicon.png"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="../static/css/index.css" type="text/css" />
-    <link rel="stylesheet" href="../static/css/formstyle.css" type="text/css" />
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title>FLask-Password-App</title>
-  </head>
-  <body>
-    <div class="sidenav">
-      <div class="login-main-text">
-        <h2>
-          Password Creator<br />
-          Create Page
-        </h2>
-        <p>
-          Enter how many passwords you want and how long you want them to be.
-        </p>
-        <br />
-        <br />
-        <br />
-        <h3>Example:</h3>
-        <p>
-          set of passwords: 8 this prints 8 passwords to your screen <br />
-          length of the passwords for example 25
-        </p>
-        <br />
-        <br />
-        <br />
-        <p>
-          type /checkmy/"Password" at the end of the url for example:
-          "riseofrice.de:8080/checkmy/12345678Ab!"
-        </p>
-      </div>
-    </div>
 
-    <div id="app" class="main">
-      <div class="col-md-6 col-sm-12">
-        <div class="login-form">
-          <form action="http://riseofrice.de:8080/new" method="POST">
-            <div class="form-group">
-              <label
-                >How many Passwords you like? {{ quants }}
-                <span v-show="showi">?</span></label
-              >
-              <input
-                v-model="message"
-                type="text"
-                class="form-control"
-                name="q"
-                placeholder="Quantity as number"
-              />
-            </div>
-            <div class="form-group" v-show="showi">
-              <label>{{ lengths }}</label>
-              <input
-                type="text"
-                name="length"
-                class="form-control"
-                placeholder="length as a number"
-                v-model="len"
-              />
-            </div>
-            <input type="submit" class="btn btn-black" value="submit" />
-          </form>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../static/css/index.css" type="text/css" />
+  <link rel="stylesheet" href="../static/css/formstyle.css" type="text/css" />
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <title>FLask-Password-App</title>
+</head>
+
+<body>
+  {% raw %}
+  <div class="sidenav">
+    <div class="login-main-text">
+      <h2>
+        Password Creator<br />
+        Create Page
+      </h2>
+      <p>
+        Enter how many passwords you want and how long you want them to be.
+      </p>
+      <br />
+      <br />
+      <br />
+      <h3>Example:</h3>
+      <p>
+        set of passwords: 8 this prints 8 passwords to your screen <br />
+        length of the passwords for example 25
+      </p>
+      <br />
+      <br />
+      <br />
+      <p>
+        type /checkmy/"Password" at the end of the url for example:
+        "riseofrice.de:8080/checkmy/12345678Ab!"
+      </p>
+    </div>
+  </div>
+
+  <div id="app" class="main">
+    <div class="col-md-6 col-sm-12">
+      <div class="login-form">
+        <!-- TODO Change this befor push -->
+        <form action="http://localhost:8080/new" method="POST">
+          <div class="form-group">
+            <label>How many Passwords you like? {{ quants }}
+              <span v-show="showi">?</span></label>
+            <input v-model="message" type="text" class="form-control" name="q" placeholder="Quantity as number" />
+          </div>
+          <div class="form-group" v-show="showi">
+            <label>{{ lengths }}</label>
+            <input type="text" name="length" class="form-control" placeholder="length as a number" v-model="len" />
+          </div>
+          <input type="submit" class="btn btn-black" value="submit" />
+        </form>
       </div>
     </div>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="./js/main.js"></script>
-  </body>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="../static/js/main.js"></script>
+  {% endraw %}
+</body>
+
 </html>
