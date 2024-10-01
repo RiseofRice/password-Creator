@@ -38,7 +38,9 @@
       <br />
       <p>
         type /checkmy/"Password" at the end of the url for example:
-        "riseofrice.de:8080/checkmy/12345678Ab!"
+        <script>
+          document.write("http://" + (window.location.hostname || window.location.host) + ":8080/checkmy/12345678Ab!");
+        </script>
       </p>
     </div>
   </div>
@@ -49,12 +51,12 @@
 
         <form action="http://localhost:8080/new" method="POST">
           <div class="form-group">
-            <label>How many Passwords you like? {{ quants }}
+            <label>How many Passwords you like? {% endraw %} {{ quants }} {% raw %}
               <span v-show="showi">?</span></label>
             <input v-model="message" type="text" class="form-control" name="q" placeholder="Quantity as number" />
           </div>
           <div class="form-group" v-show="showi">
-            <label>{{ lengths }}</label>
+            <label> How long should the passwords be ?{% endraw %} {{ lengths }} {% raw %} </label>
             <input type="text" name="length" class="form-control" placeholder="length as a number" v-model="len" />
           </div>
           <input type="submit" class="btn btn-black" value="submit" />
@@ -62,7 +64,7 @@
       </div>
     </div>
   </div>
-  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="../static/js/main.js"></script>
   {% endraw %}
 </body>
