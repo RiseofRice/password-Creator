@@ -1,6 +1,8 @@
-FROM python:3.12-slim
+FROM python:alpine
 
-MAINTAINER Kevin Janssen "xthekay@gmail.com"
+
+
+
 
 ADD . /app
 
