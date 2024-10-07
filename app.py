@@ -95,20 +95,24 @@ def pwnd():
         else:
             return render_template("compromised.html", data=password)
 
-    
-@ app.route("/check", methods=["POST", "GET"])
+@ app.route("/strength")
+def strength_check():
+    return render_template("password_check_form.html")
+
+@ app.route("/strength/check", methods=["POST", "GET"])
 def check():
     """
     Check the strength of a password.
     Returns: the strength of the password
     Get and Post requests are supported.
     """
-    if request.method != "POST":
-        password = request.args.get('password')
+    if request.method == "POST":
+        password = request.form.get('pw')
         strength, reasons = passwordcheck.check_password(password)
-        return strength
+        pw = pwned.password(password)
+        return render_template("password_result.html", strength=strength, reasons=reasons, password=password, pwned=pw)
     else:
-        password = request.form['password']
+        password = request.form.get('pw')
         strength, reasons = passwordcheck.check_password(password)
         return strength
 
