@@ -1,7 +1,7 @@
 from flask import render_template, Flask, jsonify, redirect, request
 import string
 from genpasswds import generate_passwords
-
+import passwordcheck
 from genlist import gen_list
 import os
 import requests
@@ -11,6 +11,7 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+
 
 
 @ app.route("/")
