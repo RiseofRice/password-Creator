@@ -35,6 +35,10 @@
       </p>
       <br />
       <br />
+      <h3>HaveIBeenPwnd?</h3>
+      <p>Check ob dein Password in einem Datenleck erfasst wurde
+        <a href="http://localhost:8080/breach">HaveIBeenPwnd</a>
+      </p>
       <br />
       
     </div>
@@ -44,7 +48,7 @@
     <div class="col-md-6 col-sm-12">
       <div class="login-form">
 
-        <form id="my-form" action="http://localhost:8080/new" method="get">
+        <form id="my-form" action="http://0.0.0.0:8080/new" method="GET">
           <div class="form-group">
             <label>How many Passwords you like? {% endraw %} {{ quants }} {% raw %}
               <span v-show="showi">?</span></label>
@@ -64,18 +68,23 @@
             if (Quantity==="") {
               alert("Please enter a number for the quantity of passwords you want");
               event.preventDefault();
+              window.location.reload();
             } else if (lengthh==="") {
               alert("Please enter a number for the length of the passwords you want");
               event.preventDefault();
+              window.location.reload();
               
             }
 
             if (isNaN(Quantity)) {
               alert("Please enter a number for the quantity of passwords you want");
               event.preventDefault();
+              window.location.reload();
             } else if (isNaN(lengthh)) {
               alert("Please enter a number for the length of the passwords you want");
               event.preventDefault();
+              window.location.reload();
+              
             }
           })
         </script>
