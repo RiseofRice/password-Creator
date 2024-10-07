@@ -1,7 +1,8 @@
 from flask import render_template, Flask, jsonify, redirect, request
 import string
 from genpasswds import generate_passwords
-
+import passwordcheck
+import pwned
 from genlist import gen_list
 import os
 import requests
@@ -11,6 +12,7 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+
 
 
 @ app.route("/")
@@ -42,7 +44,7 @@ def new():
    
     
 
-    if request.method == "POST":
+    if request.method == "GET":
         q = int(request.args.get('q'))
         length = int(request.args.get('length'))
         passwds = gen_list(q, length)
@@ -78,6 +80,41 @@ def onePass():
     else:
         password = generate_passwords(length=25)
         return password
+    
+@ app.route("/breach")
+def breach_check():
+    return render_template("pwnd.html")
+
+@app.route("/pwnd", methods=["POST", "GET"])
+def pwnd():
+    if request.method == "POST":
+        password = str(request.form['pw'])
+        pw = pwned.password(password)
+        if pw == False:
+            return render_template("safe.html", data=password)
+        else:
+            return render_template("compromised.html", data=password)
+
+@ app.route("/strength")
+def strength_check():
+    return render_template("password_check_form.html")
+
+@ app.route("/strength/check", methods=["POST", "GET"])
+def check():
+    """
+    Check the strength of a password.
+    Returns: the strength of the password
+    Get and Post requests are supported.
+    """
+    if request.method == "POST":
+        password = request.form.get('pw')
+        strength, reasons = passwordcheck.check_password(password)
+        pw = pwned.password(password)
+        return render_template("password_result.html", strength=strength, reasons=reasons, password=password, pwned=pw)
+    else:
+        password = request.form.get('pw')
+        strength, reasons = passwordcheck.check_password(password)
+        return strength
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
