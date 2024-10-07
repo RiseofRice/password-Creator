@@ -81,3 +81,13 @@ def onePass():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
+
+    #Todo: Add a new route that will check if the password is strong or weak
+    #Research: How to check if a password is strong or weak
+    #Todo: Add a new route that will check if the password is in the list of the most common passwords
+    #Research: How to check if a password is in the list of the most common passwords
+    #Todo : Add a new route that will check if that password has been pwned
+    #Research: How to check if a password has been pwned any api that can be used to check if a password has been pwned?
+
+    #Todo: Add a  system that will allow users to create a local Sqlite Database and store their passwords locally
+    #Research: How to create a local Sqlite Database and store passwords locally
