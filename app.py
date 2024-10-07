@@ -28,22 +28,26 @@ def helloworld():
 def new():
     """
     Handle the creation of new passwords based on the request method.
-    For POST requests:
-    - Expects a JSON payload with 'q' (quantity) and 'length' (length of each password).
-    - Validates the presence and validity of 'q' and 'length'.
-    - Generates a list of passwords and returns them in JSON format.
     For GET requests:
-    - Expects 'q' and 'length' as query parameters.
-    - Generates a list of passwords and renders them in an HTML template.
+    - Expects JSON data with 'q' (quantity) and 'length' (length of each password).
+    - Returns a JSON response with generated passwords or an error message if data is invalid.
+    For POST requests:
+    - Expects query parameters 'q' (quantity) and 'length' (length of each password).
+    - Returns an HTML response with generated passwords.
     Returns:
-        - JSON response with generated passwords for POST requests.
-        - Rendered HTML template with generated passwords for GET requests.
-        - JSON error response with appropriate status code for invalid data.
+        - JSON response with generated passwords or error message for GET requests.
+        - HTML response with generated passwords for POST requests.
     """
+    
    
     
 
     if request.method == "POST":
+        q = int(request.args.get('q'))
+        length = int(request.args.get('length'))
+        passwds = gen_list(q, length)
+        return render_template('success.html', liste=passwds)
+    else:
         data = request.get_json()
         if not data:
             return jsonify({"error": "No data provided"}), 400
@@ -59,11 +63,6 @@ def new():
         
         passwds = gen_list(q, length)
         return jsonify({"passwords": passwds})
-    else:
-        q = int(request.args.get('q'))
-        length = int(request.args.get('length'))
-        passwds = gen_list(q, length)
-        return render_template('success.html', liste=passwds)
 
 
 @ app.route("/1pass", methods=["POST", "GET"])
