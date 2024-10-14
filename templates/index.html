@@ -35,13 +35,12 @@
       </p>
       <br />
       <br />
-      <br />
-      <p>
-        type /checkmy/"Password" at the end of the url for example:
-        <script>
-          document.write("http://" + (window.location.hostname || window.location.host) + ":8080/checkmy/12345678Ab!");
-        </script>
+      <h3>HaveIBeenPwnd?</h3>
+      <p>Check ob dein Password in einem Datenleck erfasst wurde
+        <a href="http://localhost:8080/breach">HaveIBeenPwnd</a>
       </p>
+      <br />
+      
     </div>
   </div>
 
@@ -49,18 +48,46 @@
     <div class="col-md-6 col-sm-12">
       <div class="login-form">
 
-        <form action="http://localhost:8080/new" method="POST">
+        <form id="my-form" action="http://localhost:8080/new" method="GET">
           <div class="form-group">
             <label>How many Passwords you like? {% endraw %} {{ quants }} {% raw %}
               <span v-show="showi">?</span></label>
-            <input v-model="message" type="text" class="form-control" name="q" placeholder="Quantity as number" />
+            <input v-model="message" type="text" id="Quantity" class="form-control" name="q" placeholder="Quantity as number" />
           </div>
           <div class="form-group" v-show="showi">
             <label> How long should the passwords be ?{% endraw %} {{ lengths }} {% raw %} </label>
-            <input type="text" name="length" class="form-control" placeholder="length as a number" v-model="len" />
+            <input type="text" name="length" id="lengthh" class="form-control" placeholder="length as a number" v-model="len" />
           </div>
           <input type="submit" class="btn btn-black" value="submit" />
         </form>
+        <script>
+          document.getElementById("my-form").addEventListener("submit", function(event) {
+            let Quantity = document.getElementById("Quantity").value;
+            let lengthh = document.getElementById("lengthh").value;
+
+            if (Quantity==="") {
+              alert("Please enter a number for the quantity of passwords you want");
+              event.preventDefault();
+              window.location.reload();
+            } else if (lengthh==="") {
+              alert("Please enter a number for the length of the passwords you want");
+              event.preventDefault();
+              window.location.reload();
+              
+            }
+
+            if (isNaN(Quantity)) {
+              alert("Please enter a number for the quantity of passwords you want");
+              event.preventDefault();
+              window.location.reload();
+            } else if (isNaN(lengthh)) {
+              alert("Please enter a number for the length of the passwords you want");
+              event.preventDefault();
+              window.location.reload();
+              
+            }
+          })
+        </script>
       </div>
     </div>
   </div>
