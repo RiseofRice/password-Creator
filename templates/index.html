@@ -43,12 +43,19 @@
       
     </div>
   </div>
-
+  <script>
+    window.onload = function() {
+      var form = document.getElementById("my-form");
+      var currentURL = window.location.origin;
+      form.action = currentURL + "/new";
+      console.log(form.action);
+    }
+  </script>
   <div id="app" class="main">
     <div class="col-md-6 col-sm-12">
       <div class="login-form">
 
-        <form id="my-form" action="http://localhost:8080/new" method="GET">
+        <form id="my-form"  method="GET">
           <div class="form-group">
             <label>How many Passwords you like? {% endraw %} {{ quants }} {% raw %}
               <span v-show="showi">?</span></label>
