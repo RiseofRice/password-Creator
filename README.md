@@ -8,7 +8,7 @@ ____
 
 #### Dependencies
 
-You'll need Python 3.11 and Flask installed </br>
+You'll need Python 3.6 and Flask installed </br>
 Flask 
 ___
 just install the Requirements.txt with the command </br>
@@ -22,7 +22,7 @@ you can use the dockerfile too:
 
 After that:
 
- - `docker run --name Flask-App -d -p 8080:8080 FlaskPasswords`
+ - `docker run --name Flask-App -d -p 5000:8080 FlaskPasswords`
 
 Or use docker-compose:
 
@@ -32,7 +32,7 @@ Maybe the rendered html needs to be adapted to your port configuration especiall
 ____
 Usage
 -
-after the installation it's available on `0.0.0.0:8080 which means 127.0.0.1:8080` on Docker</br>
+after the installation it's available on `0.0.0.0:5000 which means 127.0.0.1:5000` on Docker</br>
 and `0.0.0.0:8080` on native Python 
 ___
 
@@ -45,7 +45,18 @@ On the website are just 2 Input Boxes. </br>
 ___
 You can also send a GET Request to the Webapp
 
-for example `0.0.0.0:8080/new?q=8&length=25` </br>
+for example `0.0.0.0:8000/new?q=8&length=25` </br>
+___
+Passwordchecker
+-
+`localhost:5000/checkmy/<password>` </br>
+You may need a api to use the built in password checker. You can get the key here [NIST](nist.badpasswordcheck.com). this key should stored in a file called apikey.json with this format: 
+```{"api_key": "paste key here!"}```.
+ Or you add a enviroment variable to your docker with: ``docker run -e API_KEY=Apikeyhere``
+___
+Acknowledgement's
+-
+Special Thanks to [NIST](nist.badpasswordcheck.com) for making availeble the bad password api that i use in this program
 ___
 License  [![](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) :scroll:
 -

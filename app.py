@@ -10,6 +10,7 @@ from flask_cors import CORS
 import json
 
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -17,6 +18,7 @@ CORS(app)
 
 @ app.route("/")
 def helloworld():
+    
     """
     Renders the index.html template.
     Returns:
@@ -44,27 +46,19 @@ def new():
    
     
 
-    if request.method == "GET":
-        q = int(request.args.get('q'))
-        length = int(request.args.get('length'))
+    if request.method == "POST":
+        q = int(request.form['q'])
+        length = int(request.form['length'])
         passwds = gen_list(q, length)
         return render_template('success.html', liste=passwds)
     else:
-        data = request.get_json()
-        if not data:
-            return jsonify({"error": "No data provided"}), 400
-        q = data.get('q')
-        length = data.get('length')
-        if not q or not length:
-            return jsonify({"error": "Invalid data provided"}), 400
-        
-        q = int(q)
-        length = int(length)
-        if q < 1 or length < 1:
-            return jsonify({"error": "Invalid data provided"}), 400
-        
+        q = int(request.args.get('q'))
+        length = int(request.args.get('length'))
         passwds = gen_list(q, length)
-        return jsonify({"passwords": passwds})
+        if q == 1:
+            return passwds[0]
+        else:
+            return jsonify(passwds)
 
 
 @ app.route("/1pass", methods=["POST", "GET"])

@@ -40,15 +40,28 @@
         <a href="http://localhost:8080/breach">HaveIBeenPwnd</a>
       </p>
       <br />
+      <br>
+      <div class="github-link">
+        <a href="https://github.com/RiseofRice/password-Creator" target="_blank">
+          <img src="../static/img/github-mark.png" alt="View my Repository on GitHub" style="width: 30px; height: 30px; vertical-align: middle; filter: invert(100%);" />
+        </a>
+      </div>
       
     </div>
   </div>
-
+  <script>
+    window.onload = function() {
+      var form = document.getElementById("my-form");
+      var currentURL = window.location.origin;
+      form.action = currentURL + "/new";
+      console.log(form.action);
+    }
+  </script>
   <div id="app" class="main">
     <div class="col-md-6 col-sm-12">
       <div class="login-form">
 
-        <form id="my-form" action="http://localhost:8080/new" method="GET">
+        <form id="my-form"  method="POST">
           <div class="form-group">
             <label>How many Passwords you like? {% endraw %} {{ quants }} {% raw %}
               <span v-show="showi">?</span></label>
